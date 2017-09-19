@@ -9,8 +9,7 @@
     <ion-col col-8>
       Current Revenue
     </ion-col>
-    <ion-col col-4 [class.profitable]="currentEvent?.revenue > 0"
-      [class.no-profit]="currentEvent?.revenue < 0">
+    <ion-col col-4 [class.profitable]="currentEvent?.revenue > 0" [class.no-profit]="currentEvent?.revenue < 0">
       {{currentEvent?.revenue}}
     </ion-col>
   </ion-row>
@@ -31,11 +30,10 @@
     <ion-card-content>
       <ion-row>
         <ion-col col-8>
-            <ion-item>
-              <ion-label stacked>Name</ion-label>
-              <ion-input [(ngModel)]="guestName" type="text"
-                placeholder="What's your guest's name?"></ion-input>
-            </ion-item>
+          <ion-item>
+            <ion-label stacked>Name</ion-label>
+            <ion-input [(ngModel)]="guestName" type="text" placeholder="What's your guest's name?"></ion-input>
+          </ion-item>
         </ion-col>
         <ion-col col-4>
           <button ion-button icon-only (click)="takePicture()">
@@ -45,8 +43,7 @@
       </ion-row>
       <span *ngIf="guestPicture">Picture taken!</span>
 
-      <button ion-button color="primary" block (click)="addGuest(guestName)"
-        [disabled]="!guestName">
+      <button ion-button color="primary" block (click)="addGuest(guestName)" [disabled]="!guestName">
         Add Guest
       </button>
     </ion-card-content>

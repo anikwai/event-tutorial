@@ -1,31 +1,28 @@
-import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
+import { Component } from "@angular/core";
+import { Platform } from "ionic-angular";
+import { StatusBar } from "@ionic-native/status-bar";
+import { SplashScreen } from "@ionic-native/splash-screen";
+import { FIREBASE_CREDENTIALS } from "./credentials";
 
-import firebase from 'firebase';
+import firebase from "firebase";
 
-import { HomePage } from '../pages/home/home';
+import { HomePage } from "../pages/home/home";
 @Component({
-  templateUrl: 'app.html'
+  templateUrl: "app.html"
 })
 export class MyApp {
-  rootPage:any;
+  rootPage: any;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
+  constructor(
+    platform: Platform,
+    statusBar: StatusBar,
+    splashScreen: SplashScreen
+  ) {
+    firebase.initializeApp(FIREBASE_CREDENTIALS);
 
-    firebase.initializeApp({
-      apiKey: "AIzaSyBJTmt3LGBm5CTiO5DUZ4W3O5mTLphaoKY",
-      authDomain: "javebratt-playground.firebaseapp.com",
-      databaseURL: "https://javebratt-playground.firebaseio.com",
-      projectId: "javebratt-playground",
-      storageBucket: "javebratt-playground.appspot.com",
-      messagingSenderId: "369908572440"
-    });
-
-    const unsubscribe = firebase.auth().onAuthStateChanged( user => {
-      if(!user){
-        this.rootPage = 'LoginPage';
+    const unsubscribe = firebase.auth().onAuthStateChanged(user => {
+      if (!user) {
+        this.rootPage = "LoginPage";
         unsubscribe();
       } else {
         this.rootPage = HomePage;
@@ -41,4 +38,3 @@ export class MyApp {
     });
   }
 }
-

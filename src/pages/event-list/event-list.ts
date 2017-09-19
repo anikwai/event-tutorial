@@ -1,21 +1,24 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController } from 'ionic-angular';
-import { EventProvider } from '../../providers/event/event';
+import { Component } from "@angular/core";
+import { IonicPage, NavController } from "ionic-angular";
+import { EventProvider } from "../../providers/event/event";
 
 @IonicPage()
 @Component({
-  selector: 'page-event-list',
-  templateUrl: 'event-list.html',
+  selector: "page-event-list",
+  templateUrl: "event-list.html"
 })
 export class EventListPage {
-  public eventList:Array<any>;
+  public eventList: Array<any>;
 
-  constructor(public navCtrl:NavController, public eventProvider:EventProvider) {}
+  constructor(
+    public navCtrl: NavController,
+    public eventProvider: EventProvider
+  ) {}
 
   ionViewDidLoad() {
-    this.eventProvider.getEventList().on('value', eventListSnapshot => {
+    this.eventProvider.getEventList().on("value", eventListSnapshot => {
       this.eventList = [];
-      eventListSnapshot.forEach( snap => {
+      eventListSnapshot.forEach(snap => {
         this.eventList.push({
           id: snap.key,
           name: snap.val().name,
@@ -27,8 +30,7 @@ export class EventListPage {
     });
   }
 
-  goToEventDetail(eventId):void {
-    this.navCtrl.push('EventDetailPage', { 'eventId': eventId });
+  goToEventDetail(eventId): void {
+    this.navCtrl.push("EventDetailPage", { eventId: eventId });
   }
-
 }
